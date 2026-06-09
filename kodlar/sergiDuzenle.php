@@ -7,9 +7,6 @@
   <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  
- 
-  
 
   
   <style>
@@ -31,13 +28,10 @@ session_start();
 
 if (!isset($_SESSION['username'])){ 
 		
-		header("Location: index.php"); 
-   
-   } 
-
+		header("Location: index.php");
+   }
 require('vtbaglan.php'); 
-   
-	
+
 ?>
 <!-- taşıyıcı başlangıcı -->
 <div class="container">
@@ -57,9 +51,7 @@ require('vtbaglan.php');
 	  header("Location: ".$_SERVER['PHP_SELF']);
 		exit;
   }
-  
-   
-   
+
     $cevap = mysqli_query($baglanti, "SELECT * FROM sergi");
   ?>
 
@@ -104,9 +96,7 @@ require('vtbaglan.php');
 </div>
 
 
-
 <!-- tablo bitişi -->
-
 
  
 <!-- taşıyıcı bitişi -->
