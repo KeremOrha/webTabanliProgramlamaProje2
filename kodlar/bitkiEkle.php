@@ -19,7 +19,7 @@ if (!isset($_SESSION['username'])){
    
     extract($_POST); 
    
-    // sifre metni SHA256 ile şifreleniyor. 
+    
    
      
     $sql = $baglanti->prepare ("SELECT * FROM bitki WHERE  bitki_ad=?");
@@ -29,7 +29,7 @@ if (!isset($_SESSION['username'])){
     
    
   
-   //eger cevap FALSE ise hata yazdiriyoruz.       
+          
    
    if(!$cevap ){ 
    
@@ -37,7 +37,7 @@ if (!isset($_SESSION['username'])){
    
    } 
    
-   //veritabanindan dönen satır sayısını bul 
+   
    
 	$say = $sql->get_result();
 	$say = $say->num_rows;
@@ -75,7 +75,7 @@ if (!isset($_SESSION['username'])){
    ?> 
 <html>
 	<head>
-	   <!-- türkçe karakter desteği ayarı --> 
+	  
 	   <meta http-equiv="Content-Type" content="text/html;  
 		  charset=UTF-8" />
 		  <meta charset="utf-8">
@@ -134,11 +134,12 @@ if (!isset($_SESSION['username'])){
 						<label for="desc" class="form-label">Açıklama</label>
 						<textarea class="form-control" name="desc" placeholder="Açıklama" required></textarea>
 					</div>
-					
+					<!-- Foto -->
 					<div class="mb-3">
 						<label for="photo" class="form-label">Bitki Fotoğraf Adı</label>
 						<input type="text" class="form-control" name="photo" placeholder="Foto adı" required>
 					</div>
+					<!-- Link -->
 					<div class="mb-3">
 						<label for="link" class="form-label">Daha fazla bilgi linki</label>
 						<input type="text" class="form-control"  name="link" placeholder="Link" required>
