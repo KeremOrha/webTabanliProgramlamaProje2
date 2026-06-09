@@ -8,10 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   
- 
-  
 
-  
   <style>
 	body {
 			background: #333333 url('./arkaplan/bg2.png')  center center / cover fixed;
@@ -34,8 +31,7 @@ if(isset($_GET['cikis'])){
 }
 
 require('vtbaglan.php'); 
-   
-	
+
    
     $baglanti = sqlBaglan();
 ?>
@@ -93,10 +89,7 @@ require('vtbaglan.php');
 	}
   ?>
   
-  
 
-    
-	
 <div class="row">
  
   <div class="col-4">
@@ -107,9 +100,7 @@ require('vtbaglan.php');
     </div>
 	
   </div>
-  
-  
- 
+
   <div class="col-8">
     <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example overflow-auto" style="height:50vh; "tabindex="0">
 		<?php foreach($sergiler as $s):?>
@@ -122,15 +113,10 @@ require('vtbaglan.php');
   </div>
   
 </div>
-  
- 
 
- 
  <!-- scrollspy bitişi -->
 
 
-
- 
 <!-- taşıyıcı bitişi -->
 </div>
  
