@@ -59,20 +59,11 @@
    
    extract($_POST); 
    
-    
-   
-  
-   
 	$sql = $baglanti->prepare("UPDATE etkinlik SET etkinlik_ad=?, etkinlik_aciklama=?,etkinlik_tarih=? WHERE etkinlik_id = ?");
 
 	$sql->bind_param( "sssi", $name, $desc, $date, $id);
 
 	$cevap = $sql->execute();
-   
-   
-   
-   
-          
   
    if(!$cevap ){ 
    
@@ -87,26 +78,10 @@
 		exit;
   }
    
-	
-	 
-   
-   
-   
+
    } 
-	
-	
-   
-   
-   
+
    ?> 
-
-
-
-
-
-
-
-
 
 
   
@@ -120,20 +95,20 @@
                 <h2 class="text-center mb-4 fw-bold text-success">Değiştir</h2>
                 
                 <form action="<?php $_PHP_SELF ?>" method="POST">
-					<!-- Kullanıcı Adı -->
-					<!-- Kullanıcı Adı -->
+					
+					<!-- Etkinlik Adı -->
 					<div class="mb-3">
 						<label for="name" class="form-label">Etkinlik adı</label>
 						<input type="text" class="form-control" value="<?php echo $etkinlik['etkinlik_ad']; ?>"name="name" placeholder="Etkinlik Adı" required>
 					</div>
 					
-					<!-- Şifre -->
+					<!-- Açıklama -->
 					<div class="mb-4">
 						<label for="desc" class="form-label">Etkinlik Açıklaması</label>
 						
 						<textarea class="form-control" name="desc" placeholder="Açıklama" required ><?php echo $etkinlik['etkinlik_aciklama']; ?></textarea>
 					</div>
-					
+					<!-- Tarih -->
 					<div class="mb-4">
 						<label for="date" class="form-label">Tarih</label>
 						<input type="date" class="form-control" value="<?php echo $etkinlik['etkinlik_tarih']; ?>" name="date" placeholder="Tarih" required>
