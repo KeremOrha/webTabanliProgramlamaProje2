@@ -60,9 +60,7 @@
    $yonetici = $_POST['yonetici'] ?? 0;
    extract($_POST); 
    
-    
-   
-  
+
    
 	$sql = $baglanti->prepare("UPDATE uye SET uye_ad=?, uye_yonetici_mi=? WHERE uye_id = ?");
 
@@ -70,15 +68,7 @@
 
 	$cevap = $sql->execute();
    
-   
-   
-   
- 
-   
-  
-   
-          
-  
+
    if(!$cevap ){ 
    
        echo '<br>Hata:' . mysqli_error($baglanti); 
@@ -91,11 +81,7 @@
 	  header("Location: uyeDuzenle.php");
 		exit;
   }
-   
-	
    } 
-	
-   
    ?> 
 
   
@@ -109,7 +95,7 @@
                 <h2 class="text-center mb-4 fw-bold text-success">Değiştir</h2>
                 
                 <form action="<?php $_PHP_SELF ?>" method="POST">
-					<!-- Kullanıcı Adı -->
+					
 					<!-- Kullanıcı Adı -->
 					<div class="mb-3">
 						<label for="name" class="form-label">Üye adı</label>
@@ -117,7 +103,7 @@
 					</div>
 					
 				
-					
+					<!-- Yönetici mi -->
 					<div class="form-check">
 					  <input class="form-check-input" type="checkbox" value="1" name="yonetici" <?php echo ($uye['uye_yonetici_mi'] == 1)? 'checked=""' : ''; ?>>
 					  <label class="form-check-label" for="checkDefault">
