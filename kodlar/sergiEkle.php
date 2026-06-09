@@ -7,42 +7,28 @@ if (!isset($_SESSION['username'])){
    
    } 
 
-
    require ('vtbaglan.php'); 
-   
-   
-   
-   
+
     $baglanti = sqlBaglan();
    
    if (isset($_POST['name']) && isset($_POST['desc'])){ 
    
     extract($_POST); 
-   
-    // sifre metni SHA256 ile şifreleniyor. 
-   
+
      
     $sql = $baglanti->prepare ("SELECT * FROM `sergi` WHERE sergi_ad=?");
 		$sql->bind_param("s", $name);
 	   
 		$cevap=$sql->execute();
       
-   
-   
-   
-    
-   
-   
-   
-   //eger cevap FALSE ise hata yazdiriyoruz.       
+     
    
    if(!$cevap ){ 
    
        echo '<br>Hata:' . mysqli_error($baglanti); 
    
    } 
-   
-   //veritabanindan dönen satır sayısını bul 
+
    
 	$say = $sql->get_result();
 	$say = $say->num_rows; 
@@ -55,19 +41,14 @@ if (!isset($_SESSION['username'])){
 		$sql->bind_param("ss", $name, $desc);
 	   
 		$cevap=$sql->execute();
-	   
-   
-	   
+
 		   if ($cevap){ 
 				$mesaj = "<h1>Sergi eklendi</h1>"; 
-			   
-	   
+
 		   }else{ 
 	   
 			   $mesaj = "<h1>Sergi Eklenemedi!</h1>"; 
-	   
 		   } 
-	   
 	   } 
 	   else{
 		   $mesaj = "<h1>Sergi zaten var</h1>";
@@ -77,7 +58,6 @@ if (!isset($_SESSION['username'])){
    ?> 
 <html>
 	<head>
-	   <!-- türkçe karakter desteği ayarı --> 
 	   <meta http-equiv="Content-Type" content="text/html;  
 		  charset=UTF-8" />
 		  <meta charset="utf-8">
@@ -125,20 +105,16 @@ if (!isset($_SESSION['username'])){
                 <h2 class="text-center mb-4 fw-bold text-success">Sergi Ekle</h2>
                 
                 <form action="<?php $_PHP_SELF ?>" method="POST">
-					<!-- Bitki Adı -->
+					<!-- Sergi Adı -->
 					<div class="mb-3">
 						<label for="name" class="form-label">Sergi Adı</label>
 						<input type="text" class="form-control" name="name" placeholder="Sergi adı" required>
-					</div>
-					
-					<!-- Bitki Açıklaması -->
+					</div>				
+					<!-- Sergi Açıklaması -->
 					<div class="mb-4">
 						<label for="desc" class="form-label">Açıklama</label>
 						<textarea class="form-control" name="desc" placeholder="Açıklama" required></textarea>
-					</div>
-					
-					
-					
+					</div>	
 					<!--Buton -->
 					<div class="d-flex justify-content-between align-items-center">
 						<button type="submit" class="btn btn-primary px-4 py-2 fw-semibold">Ekle</button>
