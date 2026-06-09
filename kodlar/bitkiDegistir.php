@@ -96,24 +96,24 @@
                 <h2 class="text-center mb-4 fw-bold text-success">Değiştir</h2>
                 
                 <form action="<?php $_PHP_SELF ?>" method="POST">
-					<!-- Kullanıcı Adı -->
+					<!-- Bitki Adı -->
 					<div class="mb-3">
 						<label for="name" class="form-label">Bitki adı</label>
 						<input type="text" class="form-control" value="<?php echo $bitki['bitki_ad']; ?>"name="name" placeholder="Bitki Adı" required>
 					</div>
 					
-					<!-- Şifre -->
+					<!-- Açıklama -->
 					<div class="mb-4">
 						<label for="desc" class="form-label">Bitki Açıklaması</label>
 						
 						<textarea class="form-control" name="desc" placeholder="Açıklama" required ><?php echo $bitki['bitki_aciklama']; ?></textarea>
 					</div>
-					
+					<!-- Foto -->
 					<div class="mb-4">
 						<label for="photo" class="form-label">Fotoğraf</label>
 						<input type="text" class="form-control" value="<?php echo $bitki['bitki_foto_adi']; ?>" name="photo" placeholder="Foto" required>
 					</div>
-					
+					<!-- Link -->
 					<div class="mb-4">
 						<label for="link" class="form-label">Daha fazla bilgi linki</label>
 						<input type="text" class="form-control" value="<?php echo $bitki['bitki_link']; ?>" name="link" placeholder="Link" required>
