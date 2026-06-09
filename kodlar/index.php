@@ -49,32 +49,20 @@
    extract($_POST); 
    
     
-   
-  
-   
    $password = hash('sha256', $password); 
    
    $sql = "SELECT * FROM `uye` WHERE "; 
    
-  
-   
-   //kullanıcı adı kontrolü
+
    $sql= $sql . "uye_ad='$username'"; 
-   
-    
-   
+
    $cevap = mysqli_query($baglanti, $sql); 
-   
-          
-   
+
    if(!$cevap ){ 
    
        echo '<br>Hata:' . mysqli_error($baglanti); 
    
    } 
-   
-    
-   
    $say = mysqli_num_rows($cevap); 
    
    if ($say == 1){ 
@@ -88,21 +76,17 @@
 	$sql2 = "SELECT * FROM `uye` WHERE "; 
    
 	$sql2= $sql2 . "uye_sifre='$password' AND uye_ad='$username'"; 
-   
-    
-   
+ 
    $cevap2 = mysqli_query($baglanti, $sql2); 
    
-          
-   
+
    if(!$cevap2 ){ 
    
        echo '<br>Hata:' . mysqli_error($baglanti); 
    
    } 
    
-    
-   
+
    $say2 = mysqli_num_rows($cevap2); 
    
    if ($say2 == 1){ 
@@ -121,11 +105,7 @@
    
    
     } 
-	
-	 
-   
-   
-   
+
    } 
    
 	if (isset($_SESSION['username'])){ 
@@ -139,15 +119,6 @@
    ?> 
 
 
-
-
-
-
-
-
-
-
-  
     <div class="full-screen-container">
         <div class="login-container">
                <?php 
@@ -173,7 +144,6 @@
 					<!--Butonlar -->
 					<div class="d-flex justify-content-between align-items-center">
 						<button type="submit" class="btn btn-success px-4 py-2 fw-semibold">Giriş Yap</button>
-						<!--<button type="button" onclick = "window.location.href='_register.php'" class="btn btn-primary px-4 py-2 fw-semibold">Kayıt Ol</button>-->
 						<button type="button" onclick="window.location.href='anaSayfa.php'" class="btn btn-outline-success px-4 py-2 fw-semibold">Ziyaretçi Girişi</button>
 						
 					</div>
