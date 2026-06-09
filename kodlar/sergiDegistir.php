@@ -59,21 +59,14 @@
    
    extract($_POST); 
    
-    
-   
-  
-   
+ 
 	$sql = $baglanti->prepare("UPDATE sergi SET sergi_ad=?, sergi_aciklama=? WHERE sergi_id = ?");
 
 	$sql->bind_param( "ssi", $name, $desc, $id);
 
 	$cevap = $sql->execute();
    
-   
-   
-   
-          
-  
+
    if(!$cevap ){ 
    
        echo '<br>Hata:' . mysqli_error($baglanti); 
@@ -90,7 +83,6 @@
    ?> 
 
 
-
     <div class="full-screen-container">
         <div class="login-container">
                <?php 
@@ -101,14 +93,14 @@
                 <h2 class="text-center mb-4 fw-bold text-success">Değiştir</h2>
                 
                 <form action="<?php $_PHP_SELF ?>" method="POST">
-					<!-- Kullanıcı Adı -->
-					<!-- Kullanıcı Adı -->
+					
+					<!-- Sergi Adı -->
 					<div class="mb-3">
 						<label for="name" class="form-label">Sergi adı</label>
 						<input type="text" class="form-control" value="<?php echo $sergi['sergi_ad']; ?>"name="name" placeholder="sergi Adı" required>
 					</div>
 					
-					<!-- Şifre -->
+					<!-- Açıklama -->
 					<div class="mb-4">
 						<label for="desc" class="form-label">Sergi Açıklaması</label>
 						
