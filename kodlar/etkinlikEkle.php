@@ -7,32 +7,20 @@ if (!isset($_SESSION['username'])){
    
    } 
 
-
    require ('vtbaglan.php'); 
    
-   
-   
-   
+ 
     $baglanti = sqlBaglan();
    
    if (isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['date'])){ 
    
     extract($_POST); 
    
-    
-   
     $sql = $baglanti->prepare ("SELECT * FROM etkinlik WHERE etkinlik_ad=?");
 	$sql->bind_param("s", $name);
 	   
 	$cevap=$sql->execute();
-   
-    
-   
-    
-   
-    
-   
-   //eger cevap FALSE ise hata yazdiriyoruz.       
+         
    
    if(!$cevap ){ 
    
@@ -40,7 +28,6 @@ if (!isset($_SESSION['username'])){
    
    } 
    
-   //veritabanindan dönen satır sayısını bul 
    
 	$say = $sql->get_result();
 	$say = $say->num_rows;
@@ -55,18 +42,9 @@ if (!isset($_SESSION['username'])){
 	   
 		$cevap=$sql->execute();  
 	   
-		
-	   
-		
-	   
-			
-	   
-		    
-	   
 		   if ($cevap){ 
 				$mesaj = "<h1>Etkinlik eklendi</h1>"; 
-			   
-	   
+		
 		   }else{ 
 	   
 			   $mesaj = "<h1>Etkinlik Eklenemedi!</h1>"; 
@@ -82,7 +60,7 @@ if (!isset($_SESSION['username'])){
    ?> 
 <html>
 	<head>
-	   <!-- türkçe karakter desteği ayarı --> 
+	 
 	   <meta http-equiv="Content-Type" content="text/html;  
 		  charset=UTF-8" />
 		  <meta charset="utf-8">
@@ -130,18 +108,18 @@ if (!isset($_SESSION['username'])){
                 <h2 class="text-center mb-4 fw-bold text-success">Etkinlik Ekle</h2>
                 
                 <form action="<?php $_PHP_SELF ?>" method="POST">
-					<!-- Bitki Adı -->
+					<!-- Etkinlik Adı -->
 					<div class="mb-3">
 						<label for="name" class="form-label">Etkinlik Adı</label>
 						<input type="text" class="form-control" name="name" placeholder="Etkinlik adı" required>
 					</div>
 					
-					<!-- Bitki Açıklaması -->
+					<!-- Etkinlik Açıklaması -->
 					<div class="mb-4">
 						<label for="desc" class="form-label">Açıklama</label>
 						<textarea class="form-control" name="desc" placeholder="Açıklama" required></textarea>
 					</div>
-					
+					<!-- Tarih -->
 					<div class="mb-3">
 						<label for="date" class="form-label">Etkinlik Tarihi</label>
 						<input type="date" class="form-control" name="date" placeholder="Tarih" required>
