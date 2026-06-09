@@ -18,9 +18,7 @@ if ($_SESSION['yonetici_mi'] != 1){
    $yonetici = $_POST['yonetici'] ?? 0;
    
     extract($_POST); 
-   
-    // sifre metni SHA256 ile şifreleniyor. 
-   
+
     $password = hash('sha256', $password); 
    
    $sql = $baglanti->prepare ("SELECT * FROM `uye` WHERE uye_ad=?");
@@ -28,18 +26,14 @@ if ($_SESSION['yonetici_mi'] != 1){
 	   
 		$cevap=$sql->execute();
    
-    
-   
-   //eger cevap FALSE ise hata yazdiriyoruz.       
+  
    
    if(!$cevap ){ 
    
        echo '<br>Hata:' . mysqli_error($baglanti); 
    
    } 
-   
-   //veritabanindan dönen satır sayısını bul 
-   
+
 	$say = $sql->get_result();
 	$say = $say->num_rows;
    
@@ -52,18 +46,12 @@ if ($_SESSION['yonetici_mi'] != 1){
 		$sql->bind_param("sss", $username, $password, $yonetici);
 	   
 		$cevap=$sql->execute();	
-	   
-		    
-	   
+
 		   if ($cevap){
 				$mesaj = "<h1>Kullanıcı başarıyla oluşturuldu!</h1>";			   
-				
-			   
-	   
 		   }else{ 
 	   
 			   $mesaj = "<h1>Kullanıcı oluşturulamadı!</h1>"; 
-	   
 		   } 
 	   
 	   } 
@@ -74,7 +62,6 @@ if ($_SESSION['yonetici_mi'] != 1){
    ?> 
 <html>
 	<head>
-	   <!-- türkçe karakter desteği ayarı --> 
 	   <meta http-equiv="Content-Type" content="text/html;  
 		  charset=UTF-8" />
 		  <meta charset="utf-8">
