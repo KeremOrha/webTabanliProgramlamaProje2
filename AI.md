@@ -1,3 +1,5 @@
+-bootstrap ile sayfanın ortasında duracak şekilde bir giriş sayfası nasıl olur
+
 Web projelerinde kullanıcıyı karşılayan giriş sayfalarının hem şık olması hem de her ekran boyutunda tam ortalanmış (dikeyde ve yatayda) görünmesi çok önemlidir. Bunun için en pratik ve modern yöntem, Bootstrap'in Flexbox (Esnek Kutu) sınıflarını kullanmaktır.
 
 Sizin için hem mobil uyumlu hem de masaüstünde harika görünen, arka plan görselleriyle de desteklenebilecek ideal bir giriş sayfası yapısı hazırladım.
@@ -76,3 +78,60 @@ Maksimum Genişlik (max-width: 450px): Kartın mobil cihazlarda ekranı düzgün
 Görsel Derinlik: Bootstrap'in shadow (gölgelendirme) ve rounded-3 (yumuşatılmış köşeler) sınıfları, beyaz kartın arka plan görseli üzerinde havada duruyormuş gibi modern bir izlenim bırakmasını sağlar.
 
 Esnek Buton Düzeni: d-flex ve justify-content-between yapısı butonları yan yana şık bir şekilde hizalar. İsteğe göre butonları tam eşit yapmak için w-50 (yüzde 50 genişlik) sınıflarını da ekledim.
+
+
+
+-php mysql bağlantısı yaparken nasıl ' yazarım
+
+PHP ile MySQL bağlantısı yaparken (veya SQL sorguları yazarken) tek tırnak (') işareti kullanmak bazen kafa karıştırıcı olabilir, çünkü PHP'nin kendisi de metinleri tanımlamak için tek tırnak kullanır.
+
+Bu sorunu aşmanın ve tırnak işaretini güvenle yazmanın en yaygın ve doğru yolları şunlardır:
+
+1. Çift Tırnak İçinde Tek Tırnak Kullanmak (En Pratik Yol)
+PHP'de string (metin) tanımlarken dışarıda çift tırnak (") kullanırsanız, içeriye rahatlıkla tek tırnak (') yazabilirsiniz. PHP bunu hata olarak algılamaz.
+
+```PHP
+// PDO ile bağlantı örneği
+$dsn = "mysql:host=localhost;dbname=test_db;charset=utf8mb4";
+```
+Sorgu yazarken de aynı mantık geçerlidir:
+
+```PHP
+// Dışarıda çift tırnak, içeride tek tırnak
+$sorgu = "SELECT * FROM kullanicilar WHERE isim = 'Ahmet'";
+```
+2. Ters Slaş (\) ile Kaçış (Escape) Yapmak
+Eğer PHP metnini de tek tırnakla açtıysanız ve içine yine tek tırnak yazmanız gerekiyorsa, PHP'ye "bu tırnak metni bitirmiyor, sadece bir karakter" demek için önüne ters slaş koymalısınız:
+
+```PHP
+$sorgu = 'SELECT * FROM kullanicilar WHERE isim = \'Ahmet\'';
+```
+⚠️ Çok Önemli Uyarı: SQL Injection Tehlikesi!
+Eğer bir değişkenden gelen veriyi (örneğin kullanıcının formdan girdiği ismi) sorgunun içine tek tırnaklarla doğrudan eklemeye çalışıyorsanız, bu büyük bir güvenlik açığına (SQL Injection) yol açar.
+
+Hatalı ve Tehlikeli Yöntem:
+$sorgu = "SELECT * FROM kullanicilar WHERE isim = '$gelen_isim'";
+(Eğer kullanıcı isme O'Brian yazarsa sorgu patlar, kötü niyetli bir kod yazarsa veritabanınız ele geçirilebilir).
+
+Güvenli Yol: Hazırlanmış İfadeler (Prepared Statements)
+Tırnak işaretleriyle hiç boğuşmamak ve %100 güvenli bağlantı/sorgu yapmak için PDO ve Parametre kullanmalısınız. Bu yöntemde tırnak işaretlerini PHP ve MySQL kendisi otomatik olarak güvenli bir şekilde yönetir:
+
+```PHP
+// 1. Veritabanı Bağlantısı (PDO)
+try {
+    $db = new PDO("mysql:host=localhost;dbname=test_db;charset=utf8mb4", "kullanici_adi", "sifre");
+} catch (PDOException $e) {
+    die("Bağlantı hatası: " . $e->getMessage());
+}
+
+// 2. Güvenli Sorgu Hazırlama (Tırnak kullanmak yerine ? veya :isim koyuyoruz)
+$sorgu = $db->prepare("SELECT * FROM kullanicilar WHERE isim = :isim");
+
+// 3. Çalıştırma (Tırnaklar otomatik halledilir, 'Ahmet' veya 'O'Brian' olması fark etmez)
+$sorgu->execute([
+    'isim' => "O'Brian" 
+]);
+
+$kullanicilar = $sorgu->fetchAll(PDO::FETCH_ASSOC);
+```
+Özetle; düz metinlerde dışarıya çift, içeriye tek tırnak koyarak sorunu çözebilirsin. Ancak işin içine dinamik değişkenler giriyorsa mutlaka yukarıdaki PDO Prepared Statement yöntemini kullanmalısın.
