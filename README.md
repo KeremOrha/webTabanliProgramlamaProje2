@@ -15,3 +15,6 @@ Proje bir botanik bahçesinin koleksiyon, sergi ve etkinliklerinin görüldüğ�
 
 
 [video linki](https://youtu.be/j6ZwVHEZ4Eg) 
+
+üye girişi için kullanıcı adı: uye1 şifre: 12345
+yönetici girişi için kullanıcı adı: yonetici1 şifre: 12345
